@@ -10,17 +10,20 @@
 	<h1> My To Do's</h1>
 
 	<div ng-controller="mainCtrl" class='list'>
-		<input ng.model="todo.completed" type='checkbox' />
-		<label class='editing-label' ng-hide="editing">{{todo.name}}</label>
-		<input ng-show='editing' ng-model="todo.name"  class='editing-label' type='text'/>
-	{{todo.name}}
-		<div class='actions ng-scope' >
-			<a href='' ng-click="editing = !editing">{{editing}}edit</a>
-			<a href='' ng-click='helloWorld()'>save</a>
-			<a href='' ng-click='whoAmI()' class='delete'>delete</a>
-		</div>
+		<div class='item' ng-class="{'editing-item': editing, 'edited': todo.edited}" ng-repeat="todo in todos">
+			<input ng.model="todo.completed" type='checkbox' />
+			<label class='editing' ng-hide="editing">{{todo.name}}</label>
+			<input ng-blur='editing = false' ng-change="todo.edited = true" ng-show='editing' ng-model="todo.name"  class='editing-label' type='text'/>
+<!-- 	{{todo.name}}
+	{{ todos }} -->
+			<div class='actions ng-scope' >
+				<a href='' ng-click="editing = !editing">edit</a>
+				<a href='' ng-click='helloWorld()'>save</a>
+				<a href='' ng-click='whoAmI()' class='delete'>delete</a>
+			</div>
 
-		<div class='actions ng-scope' ng-controller='siblingCtrl'>{{foobar}}</div>
+<!-- 			<div class='actions ng-scope' ng-controller='siblingCtrl'>{{foobar}}</div>
+ -->		</div>
 
 	</div>
 
